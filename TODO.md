@@ -1,0 +1,3 @@
+- como usar versiones superiores ecmascript 5. Para activar optional chaining.
+- ver filtros, ejemplo con una fecha
+- ver slots
