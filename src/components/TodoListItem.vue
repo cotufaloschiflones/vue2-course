@@ -15,24 +15,26 @@
       v-else
       :class="{ 'todo-list-item--completed': completed }"
       @dblclick="isEditing = true"
-    >{{ todoText }}</span>
+    >{{ todo.title }}</span>
 
     <span
       class="todo-list-item--delete"
-      @click="$emit('delete-todo', id)"
+      @click="$emit('delete-todo', todo.id)"
     >❌</span>
   </li>
 </template>
 
 <script>
 export default {
-  name: 'TodoListItem',
-  data: () => ({
+  name:  'TodoListItem',
+  props: {
+    todo: { type: Object, required: true }
+  },
+  data: (vm) => ({
     isEditing: false,
-    completed: false,
-    id:        +new Date(),
-    todoText:  'Aprender Vue'
-  })
+    completed: vm.completed,
+    todoText:  vm.title
+  }),
 }
 </script>
 

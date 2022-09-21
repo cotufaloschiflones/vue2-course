@@ -1,3 +1,5 @@
+- vuex + vue router + axios
+
+
 - como usar versiones superiores ecmascript 5. Para activar optional chaining.
-- ver filtros, ejemplo con una fecha
-- ver slots
+- typescript y vue 3 (usando el create-vue)

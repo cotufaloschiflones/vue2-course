@@ -2,33 +2,50 @@
   <div id="app">
     <nav>
       <router-link :to="{ name: 'home' }">
-        Home
+        Todo App Excersise
       </router-link>
       <router-link :to="{ name: 'renderingDeclarative' }">
-        1.1. Renderización Declarativa
+        1. Renderización Declarativa
       </router-link>
 
       <router-link :to="{ name: 'loopsAndConditionals' }">
-        1.2. Condicionales y Bucles
+        2. Condicionales y Bucles
       </router-link>
 
       <router-link :to="{ name: 'userInteractions' }">
-        1.3.  Manejando Interacciones del Usuario
+        3.  Manejando Interacciones del Usuario
       </router-link>
 
       <router-link :to="{ name: 'methodsDataAndLifecycle' }">
-        2.1. Métodos y objeto Data / Lifecycle
+        4. Métodos y objeto Data / Vue Lifecycle
       </router-link>
 
       <router-link :to="{ name: 'watchersAndComputedProperties' }">
-        3.1. Watchers y Propiedades Computadas
+        5. Watchers y Propiedades Computadas
       </router-link>
 
       <router-link :to="{ name: 'directivesView' }">
-        4.1. Directivas básicas
+        6. Directivas
+      </router-link>
+
+      <router-link :to="{ name: 'componentsView' }">
+        7. Componentes
+      </router-link>
+
+      <router-link :to="{ name: 'filtersView' }">
+        8. Filtros
+      </router-link>
+
+      <router-link :to="{ name: 'pluginsView' }">
+        9. Plugins
       </router-link>
     </nav>
 
+    <!--
+      Dentro del componente router-view (es un componente que nos
+      facilita el plugin vue-router) se inyectarán las vistas definidas
+      en el archivo router/index.js
+    -->
     <router-view />
   </div>
 </template>

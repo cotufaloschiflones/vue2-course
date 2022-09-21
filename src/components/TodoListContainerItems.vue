@@ -1,6 +1,11 @@
 <template>
   <ul>
-    <todo-list-item @delete-todo="onDeleteTodo" />
+    <todo-list-item
+      v-for="todo in todos"
+      :key="todo.id"
+      :todo="todo"
+      @delete-todo="onDeleteTodo"
+    />
   </ul>
 </template>
 
@@ -11,6 +16,9 @@ export default {
   name:       'TodoListContainerItems',
   components: {
     TodoListItem
+  },
+  props: {
+    todos: { type: Array, required: true }
   },
   methods: {
     onDeleteTodo(id) {

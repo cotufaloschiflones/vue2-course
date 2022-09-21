@@ -1,6 +1,11 @@
 <template>
   <div>
     <div>
+      <h4>Custom directives</h4>
+      <search-input-component />
+    </div>
+
+    <div>
       <h4>v-model</h4>
       <input
         v-model="message"
@@ -9,7 +14,6 @@
       <p>El v-model es una directiva (sugar syntax) que pasa el value al componente y recoge el evento de cambio de valor y lo actualiza en el componente padre. Para ver como funciona podríamos hacerlo de la siguiente manera de forma manual.</p>
       <input
         :value="message"
-
         type="text"
         @input="message = $event.target.value"
       >
@@ -76,12 +80,15 @@
 
 <script>
 import CardComponent from '@/components/CardComponent'
+import SearchInputComponent from '@/components/SearchInputComponent'
 
 export default {
   name:       'DirectivesView',
   components: {
-    CardComponent
+    CardComponent,
+    SearchInputComponent
   },
+
   data: () => ({
     show:         false,
     message:      'Hello Vue!',
