@@ -17,6 +17,36 @@
       {{ buttonText }} elemento condicionado
     </button>
 
+    <div style="margin: 30px 0;">
+      <template v-if="loginType === 'username'">
+        <label>Nombre de Usuario</label>
+        <input placeholder="Ingrese su nombre de usuario">
+      </template>
+      <template v-else>
+        <label>Email</label>
+        <input placeholder="Ingrese su email">
+      </template>
+      <div>
+        <button @click="toggleLoginType">
+          Alternar tipo de login
+        </button>
+      </div>
+    </div>
+
+    <!--
+      Podemos utilizar la etiquta template para pintar bloques
+      y no generar tags y anidamiento innecesario de elementos html
+      https://es.vuejs.org/v2/guide/conditional.html#Grupos-Condicionales-con-v-if-en-lt-template-gt
+    -->
+    <template v-if="visible">
+      <h3>
+        Hola soy un elemento condicionado
+      </h3>
+      <p>
+        Soy visible
+      </p>
+    </template>
+
     <h2>Listas / Bucles</h2>
     <p>Array</p>
     <ul>
@@ -40,10 +70,30 @@
     <p>Object</p>
     <ul>
       <li
-        v-for="(area, key) in techs"
+        v-for="(area, key, index) in techs"
+        :key="key"
+      >
+        {{ key }}({{ index }}): {{ area.join(', ') }}
+      </li>
+    </ul>
+
+    <p>Es posible usar la sintaxis de for of en lugar de for in</p>
+    <ul>
+      <li
+        v-for="(area, key) of techs"
         :key="key"
       >
         {{ key }}: {{ area.join(', ') }}
+      </li>
+    </ul>
+
+    <p>Podemos también iterar rangos</p>
+    <ul>
+      <li
+        v-for="n in 10"
+        :key="n"
+      >
+        {{ n }}
       </li>
     </ul>
   </div>
@@ -53,8 +103,9 @@
 export default {
   name: 'LoopsAndConditionals',
   data: () => ({
-    visible: undefined,
-    techs:   {
+    loginType: 'username',
+    visible:   undefined,
+    techs:     {
       frontend: ['Vue', 'React', 'Angular'],
       backend:  ['Node', 'PHP', 'Java']
     },
@@ -96,6 +147,10 @@ export default {
       return this.visible ? 'Ocultar' : 'Mostrar'
     },
   },
+  mounted() {
+    // añadiendo de forma manual una nueva propiedad
+    this.$set(this.techs.frontend, 3, 'Polymer')
+  },
   methods: {
     toggleVisibility() {
       this.visible = !this.visible
@@ -103,7 +158,10 @@ export default {
     },
     logVisibility() {
       console.log(`My visibilidad es ahora de ${this.visible}`)
-    }
+    },
+    toggleLoginType() {
+      this.loginType = this.loginType === 'username' ? 'email' : 'username'
+    },
   },
 }
 </script>

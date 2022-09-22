@@ -79,6 +79,11 @@
 
       <p>Los slots nos permitirán crear componentes muy flexibles y dinámicos, para usar así en diferentes partes de nuestra aplicación.</p>
     </div>
+
+    <div v-once>
+      Esto nunca cambiara: {{ message }}
+      <p>El valor de las propiedades establecidas dentro de un elemento que use v-once no se volverán a computar y se mantendrán estáticas como se hayan definido la primera vez</p>
+    </div>
   </div>
 </template>
 
@@ -107,6 +112,7 @@ export default {
   methods: {
     onClick() {
       console.log('Perfecto! Te has suscrito, habrás recibido un email.')
+      this.message = 'Hello vue 2'
     }
   }
 }

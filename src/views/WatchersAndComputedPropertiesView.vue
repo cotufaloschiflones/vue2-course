@@ -11,6 +11,7 @@
     </ul>
 
     {{ fullNameYoungerStudent }}
+    {{ fullNameYoungerStudentMethod() }}
 
     <ul>
       <li>Students ordered by age</li>
@@ -98,6 +99,12 @@ export default {
     setTimeout(() => {
       this.students.push({ name: 'C Tangana', surname: 'El madrileño',  age: 17 })
     }, 5000)
+  },
+  methods: {
+    fullNameYoungerStudentMethod() {
+      const youngerStudent = this.studentsOrderedByAge[0]
+      return `${youngerStudent.name} ${youngerStudent.surname}`
+    }
   }
 }
 </script>
