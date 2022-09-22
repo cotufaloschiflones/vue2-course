@@ -6,8 +6,8 @@ class BookService extends Service {
   }
 
   /*
-  markAsRead(book) {
-    return this.axios.put(`${this.baseUrl}/${book.id}/mark-as-read`, book)
+  markAsRead(bookId) {
+    return this.axios.put(`${this.baseUrl}/${bookId}/mark-as-read`)
   }
   */
 }

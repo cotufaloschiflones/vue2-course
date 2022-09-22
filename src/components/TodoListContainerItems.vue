@@ -4,7 +4,8 @@
       v-for="todo in todos"
       :key="todo.id"
       :todo="todo"
-      @delete-todo="onDeleteTodo"
+      @delete:todo="$emit('delete:todo', $event)"
+      @update:todo="$emit('update:todo', $event)"
     />
   </ul>
 </template>
@@ -19,11 +20,6 @@ export default {
   },
   props: {
     todos: { type: Array, required: true }
-  },
-  methods: {
-    onDeleteTodo(id) {
-      console.log('delete todo en el padre', id)
-    }
   }
 }
 </script>

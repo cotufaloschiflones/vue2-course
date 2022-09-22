@@ -1,19 +1,34 @@
 {
   "todos": [
     {
-      "id": 1,
-      "title": "Aprender vue",
-      "completed": false
-    },
-    {
       "id": 2,
       "title": "Aprender vuex",
-      "completed": false
+      "completed": true
     },
     {
       "id": 3,
+      "title": "Aprender vue",
+      "completed": true
+    },
+    {
+      "id": 4,
       "title": "Aprender vue-router",
       "completed": true
+    },
+    {
+      "title": "Mi nuevo todo ya funcional",
+      "completed": true,
+      "id": 1663836823003
+    },
+    {
+      "title": "new pending",
+      "completed": false,
+      "id": 1663841755487
+    },
+    {
+      "title": "new pending 2",
+      "completed": false,
+      "id": 1663841761122
     }
   ],
   "books": [

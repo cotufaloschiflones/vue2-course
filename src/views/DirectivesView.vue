@@ -11,12 +11,16 @@
         v-model="message"
         type="text"
       >
-      <p>El v-model es una directiva (sugar syntax) que pasa el value al componente y recoge el evento de cambio de valor y lo actualiza en el componente padre. Para ver como funciona podríamos hacerlo de la siguiente manera de forma manual.</p>
+      <p>El v-model es una directiva (sugar syntax) que pasa el value al componente y recoge el evento input de cambio de valor y lo actualiza en el componente padre. Para ver como funciona podríamos hacerlo de la siguiente manera de forma manual.</p>
       <input
         :value="message"
         type="text"
         @input="message = $event.target.value"
       >
+      <p>El v-model tiene a su vez modificadores muy prácticos.</p>
+      <p><b>.trim</b> elimina los espacios vacíos al principio y final de un texto</p>
+      <p><b>.number</b> castea a número el valor del input (por defecto el valor de los inputs en html siempre son Strings)</p>
+      <p><b>.lazy</b> El v-model por defecto está vinculado (y la actualización de su valor) al evento 'input', trigeandose así cada vez que hay un input (se escribe un nuevo caracter), si usamos el modificador lazy, vincularemos el cambio al evento change, que se produce cuando se hace blur en ese elemento, es útil por temas de performance principalmente.</p>
     </div>
 
     <div>

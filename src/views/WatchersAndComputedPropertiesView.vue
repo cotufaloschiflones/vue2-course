@@ -59,6 +59,17 @@ export default {
     fullNameYoungerStudent() {
       const youngerStudent = this.studentsOrderedByAge[0]
       return `${youngerStudent.name} ${youngerStudent.surname}`
+    },
+    myComputedVar: {
+      get() {
+        return this.studentsOrderedByAge[0]
+      },
+      set(newValue) {
+        // aquí podemos setear como nos plazca el valor
+        // contra vuex, pasandolo al padre
+        console.log(newValue)
+        // this.studentsOrderedByAge[0] = newValue
+      }
     }
   },
   watch: {

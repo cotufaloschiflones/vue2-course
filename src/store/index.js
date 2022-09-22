@@ -23,23 +23,37 @@ export default new Vuex.Store({
     // getters
     // commit: un método para llamar a una mutación
     // dispatch: un método para llamar a otra acción
-    fetchTodos(context) {
-      console.log(context)
-      return todoService.index() // 'baseURl/todos'
-        .then(response => {
-          console.log(response)
-          context.commit('setTodos', response)
-        })
+    async fetchTodos(context) {
+      const todos = await todoService.index()
+      context.commit('setTodos', todos)
+    },
+    // las acciones además del primer parámetro que es el context,
+    // tiene un segundo parámetro que es el payload que le pasamos a la acción
+    async updateTodo(context, todo) {
+      await todoService.update(todo)
+      context.dispatch('fetchTodos')
+    },
+    async deleteTodo(context, todoId) {
+      await todoService.delete(todoId)
+      context.dispatch('fetchTodos')
+    },
+    async addTodo(context, todo) {
+      await todoService.create(todo)
+      context.dispatch('fetchTodos')
     }
   },
   getters: {
-    /*
+    // los getters son como las computed properties de vue
+    // pero en vez de devolver un valor, devuelven una función
     completedTodos(state) {
       return state.todos.filter(todo => todo.completed)
     },
-    numberOfCompletedTodos(state, getters) {
-      return getters.completedTodos.length
+    pendingTodos(state) {
+      return state.todos.filter(todo => !todo.completed)
+    },
+    // un getter puede además recibir parámetros, de esta forma
+    isTodosCompleted: (state) => (completed) => {
+      return state.todos.filter(todo => todo.completed === completed)
     }
-    */
   },
 })

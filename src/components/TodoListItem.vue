@@ -6,20 +6,21 @@
     >
     <input
       v-if="isEditing"
-      v-model="todoText"
+      v-model.trim="title"
+      v-focus
       type="text"
-      @keyup.enter="isEditing = false"
-      @blur="isEditing = false"
+      @keyup.enter="onUpdateTodo"
+      @blur="onUpdateTodo"
     >
     <span
       v-else
       :class="{ 'todo-list-item--completed': completed }"
       @dblclick="isEditing = true"
-    >{{ todo.title }}</span>
+    >{{ title }}</span>
 
     <span
       class="todo-list-item--delete"
-      @click="$emit('delete-todo', todo.id)"
+      @click="$emit('delete:todo', todo.id)"
     >❌</span>
   </li>
 </template>
@@ -32,9 +33,25 @@ export default {
   },
   data: (vm) => ({
     isEditing: false,
-    completed: vm.completed,
-    todoText:  vm.title
+    title:     vm.todo.title
   }),
+  computed: {
+    completed: {
+      get() {
+        return this.todo.completed
+      },
+      set(value) {
+        console.log('set completed', value)
+        this.$emit('update:todo', { ...this.todo, completed: value })
+      }
+    },
+  },
+  methods: {
+    onUpdateTodo() {
+      this.isEditing = false
+      this.$emit('update:todo', { ...this.todo, title: this.title })
+    }
+  }
 }
 </script>
 

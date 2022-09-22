@@ -1,16 +1,25 @@
 <template>
   <div class="todolist">
     <h4>My TodoList App</h4>
-    <todo-list-add-todo-input />
+    <todo-list-add-todo-input @add:todo="addTodo($event)" />
 
-    <todo-list-container-items :todos="todos" />
+    <todo-list-container-items
+      :todos="activeTodos"
+      @update:todo="updateTodo($event)"
+      @delete:todo="deleteTodo($event)"
+    />
 
-    <todo-list-filters />
+    <todo-list-filters
+      :filters="filters"
+      :total-items="activeTodos.length"
+      :active-filter="activeFilter"
+      @update:filter="activeFilter = $event"
+    />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 import TodoListAddTodoInput from '@/components/TodoListAddTodoInput'
 import TodoListContainerItems from '@/components/TodoListContainerItems'
 import TodoListFilters from '@/components/TodoListFilters'
@@ -22,12 +31,22 @@ export default {
     TodoListContainerItems,
     TodoListFilters
   },
+  data: () => ({
+    activeFilter: 'all',
+    filters:      ['all', 'completed', 'pending'],
+  }),
   computed: {
-    ...mapState(['todos'])
+    ...mapState(['todos']),
+    ...mapGetters(['completedTodos', 'pendingTodos']),
+    activeTodos() {
+      if (this.activeFilter === 'completed') return this.completedTodos
+      if (this.activeFilter === 'pending') return this.pendingTodos
+      return this.todos
+    }
+  },
+  methods: {
+    ...mapActions(['addTodo', 'deleteTodo', 'updateTodo']),
   }
-  /* methods: {
-    ...mapActions(['fetchTodos'])
-  }, */
 }
 </script>
 
